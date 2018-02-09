@@ -171,8 +171,9 @@ function restrict(obj) {
    * Sorts the elements of the array and calls 'checkIsHasContent'
    * If does not contain any array or object - exits the function and writes to the whole array
    * @param item
+   * @param name
    */
-  this.checkArray = (item) => {
+  this.checkArray = (item, name) => {
     if (this.withoutObjects(item)) {
       return out[name] = item;
     }
@@ -189,8 +190,9 @@ function restrict(obj) {
   /**
    * Calls the 'checkIsHasContent' function for each object property
    * @param item
+   * @param name
    */
-  this.checkObject = (item) => {
+  this.checkObject = (item, name) => {
     Object.keys(item).map(val => {
       this.checkIsHasContent(item[val], name + val);
     });
@@ -205,10 +207,10 @@ function restrict(obj) {
     if (item === null) return item;
 
     if (item.constructor === Array) {
-      this.checkArray(item)
+      this.checkArray(item, name)
     }
     else if (item.constructor === Object) {
-      this.checkObject(item)
+      this.checkObject(item, name)
     }
     else {
       return out[name] = item;
