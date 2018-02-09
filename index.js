@@ -95,7 +95,11 @@ function reduce(arr) {
     if (arr[i+1] - curr !== 1) {
       if (accumulator.length) {
         accumulator.push(curr);
-        out.push(this.reformat(accumulator));
+        if (accumulator.length > 2) {
+          out.push(this.reformat(accumulator));
+        } else {
+          out.push(...accumulator)
+        }
         accumulator = [];
       } else {
         out.push(curr);
